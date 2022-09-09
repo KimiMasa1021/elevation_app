@@ -15,82 +15,69 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Coordinate {
-  double get lon => throw _privateConstructorUsedError;
-  double get lat => throw _privateConstructorUsedError;
+mixin _$TopState {
+  double get elevation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CoordinateCopyWith<Coordinate> get copyWith =>
+  $TopStateCopyWith<TopState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CoordinateCopyWith<$Res> {
-  factory $CoordinateCopyWith(
-          Coordinate value, $Res Function(Coordinate) then) =
-      _$CoordinateCopyWithImpl<$Res>;
-  $Res call({double lon, double lat});
+abstract class $TopStateCopyWith<$Res> {
+  factory $TopStateCopyWith(TopState value, $Res Function(TopState) then) =
+      _$TopStateCopyWithImpl<$Res>;
+  $Res call({double elevation});
 }
 
 /// @nodoc
-class _$CoordinateCopyWithImpl<$Res> implements $CoordinateCopyWith<$Res> {
-  _$CoordinateCopyWithImpl(this._value, this._then);
+class _$TopStateCopyWithImpl<$Res> implements $TopStateCopyWith<$Res> {
+  _$TopStateCopyWithImpl(this._value, this._then);
 
-  final Coordinate _value;
+  final TopState _value;
   // ignore: unused_field
-  final $Res Function(Coordinate) _then;
+  final $Res Function(TopState) _then;
 
   @override
   $Res call({
-    Object? lon = freezed,
-    Object? lat = freezed,
+    Object? elevation = freezed,
   }) {
     return _then(_value.copyWith(
-      lon: lon == freezed
-          ? _value.lon
-          : lon // ignore: cast_nullable_to_non_nullable
-              as double,
-      lat: lat == freezed
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
+      elevation: elevation == freezed
+          ? _value.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_CoordinateCopyWith<$Res>
-    implements $CoordinateCopyWith<$Res> {
-  factory _$$_CoordinateCopyWith(
-          _$_Coordinate value, $Res Function(_$_Coordinate) then) =
-      __$$_CoordinateCopyWithImpl<$Res>;
+abstract class _$$_TopStateCopyWith<$Res> implements $TopStateCopyWith<$Res> {
+  factory _$$_TopStateCopyWith(
+          _$_TopState value, $Res Function(_$_TopState) then) =
+      __$$_TopStateCopyWithImpl<$Res>;
   @override
-  $Res call({double lon, double lat});
+  $Res call({double elevation});
 }
 
 /// @nodoc
-class __$$_CoordinateCopyWithImpl<$Res> extends _$CoordinateCopyWithImpl<$Res>
-    implements _$$_CoordinateCopyWith<$Res> {
-  __$$_CoordinateCopyWithImpl(
-      _$_Coordinate _value, $Res Function(_$_Coordinate) _then)
-      : super(_value, (v) => _then(v as _$_Coordinate));
+class __$$_TopStateCopyWithImpl<$Res> extends _$TopStateCopyWithImpl<$Res>
+    implements _$$_TopStateCopyWith<$Res> {
+  __$$_TopStateCopyWithImpl(
+      _$_TopState _value, $Res Function(_$_TopState) _then)
+      : super(_value, (v) => _then(v as _$_TopState));
 
   @override
-  _$_Coordinate get _value => super._value as _$_Coordinate;
+  _$_TopState get _value => super._value as _$_TopState;
 
   @override
   $Res call({
-    Object? lon = freezed,
-    Object? lat = freezed,
+    Object? elevation = freezed,
   }) {
-    return _then(_$_Coordinate(
-      lon == freezed
-          ? _value.lon
-          : lon // ignore: cast_nullable_to_non_nullable
-              as double,
-      lat == freezed
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
+    return _then(_$_TopState(
+      elevation: elevation == freezed
+          ? _value.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -98,49 +85,43 @@ class __$$_CoordinateCopyWithImpl<$Res> extends _$CoordinateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Coordinate implements _Coordinate {
-  _$_Coordinate(this.lon, this.lat);
+class _$_TopState implements _TopState {
+  const _$_TopState({this.elevation = 0});
 
   @override
-  final double lon;
-  @override
-  final double lat;
+  @JsonKey()
+  final double elevation;
 
   @override
   String toString() {
-    return 'Coordinate(lon: $lon, lat: $lat)';
+    return 'TopState(elevation: $elevation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Coordinate &&
-            const DeepCollectionEquality().equals(other.lon, lon) &&
-            const DeepCollectionEquality().equals(other.lat, lat));
+            other is _$_TopState &&
+            const DeepCollectionEquality().equals(other.elevation, elevation));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lon),
-      const DeepCollectionEquality().hash(lat));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(elevation));
 
   @JsonKey(ignore: true)
   @override
-  _$$_CoordinateCopyWith<_$_Coordinate> get copyWith =>
-      __$$_CoordinateCopyWithImpl<_$_Coordinate>(this, _$identity);
+  _$$_TopStateCopyWith<_$_TopState> get copyWith =>
+      __$$_TopStateCopyWithImpl<_$_TopState>(this, _$identity);
 }
 
-abstract class _Coordinate implements Coordinate {
-  factory _Coordinate(final double lon, final double lat) = _$_Coordinate;
+abstract class _TopState implements TopState {
+  const factory _TopState({final double elevation}) = _$_TopState;
 
   @override
-  double get lon;
-  @override
-  double get lat;
+  double get elevation;
   @override
   @JsonKey(ignore: true)
-  _$$_CoordinateCopyWith<_$_Coordinate> get copyWith =>
+  _$$_TopStateCopyWith<_$_TopState> get copyWith =>
       throw _privateConstructorUsedError;
 }

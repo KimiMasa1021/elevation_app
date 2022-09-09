@@ -1,12 +1,13 @@
+import 'package:elevation_app/provider/general_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TopPage extends StatelessWidget {
+class TopPage extends HookConsumerWidget {
   const TopPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(topPageViewModelProvider);
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
