@@ -8,49 +8,96 @@ class TopPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(topPageViewModelProvider);
+
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              const Text(
-                "現在の標高",
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        body: state.when(
+          data: (data) {
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
-                    "300",
+                children: [
+                  const SizedBox(height: 20),
+                  const Text(
+                    "現在の標高",
                     style: TextStyle(
-                      fontSize: 100,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
                     ),
                   ),
-                  Text(
-                    "m",
-                    style: TextStyle(
-                      fontSize: 60,
-                    ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        state.value!.elevation!.toString(),
+                        style: const TextStyle(
+                          fontSize: 100,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Text(
+                        "m",
+                        style: TextStyle(
+                          fontSize: 60,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 10),
+                      const Text(
+                        "緯度：",
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),
+                      ),
+                      Text(
+                        state.value!.lat!.toString(),
+                        style: const TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 10),
+                      const Text(
+                        "経度",
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),
+                      ),
+                      Text(
+                        state.value!.lon!.toString(),
+                        style: const TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              const Text(
-                "岩手県二戸市石切所字大村82-2",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          error: (error, stackTrace) {
+            return const Center(child: Text("データを取得できませんでした。"));
+          },
         ),
       ),
     );

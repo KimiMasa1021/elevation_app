@@ -1,9 +1,13 @@
-import 'package:flutter/cupertino.dart';
-import 'package:geolocator/geolocator.dart';
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../infrastructure/api_client.dart';
+import '../infrastructure/current_location.dart';
+import '../model/top_state.dart';
+
 abstract class TopPageRepository {
-  Future<double> fech();
+  Future<TopState> fech();
 }
 
 final xxxRepositoryProvider =
@@ -11,13 +15,19 @@ final xxxRepositoryProvider =
 
 class TopPageRepositoryImplle implements TopPageRepository {
   TopPageRepositoryImplle(this.reader);
-  final Reader reader;
 
+  final Reader reader;
+  ApiClientImpl apiClientImpl = ApiClientImpl();
+  CurrentLocation currentLocation = CurrentLocation();
   @override
-  Future<double> fech() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    debugPrint("lat:${position.latitude} lon:${position.longitude}");
-    return 123;
+  Future<TopState> fech() async {
+    final position = await currentLocation.getCurrentLocation();
+    final json = await apiClientImpl.get(position.longitude, position.latitude);
+    final response = Coordinate.fromJson(json);
+    return TopState(
+      elevation: response.elevation!.toDouble(),
+      lat: position.latitude,
+      lon: position.longitude,
+    );
   }
 }
